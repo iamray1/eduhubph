@@ -1,0 +1,31 @@
+-- ============================================================
+-- EduHub PH — Static Pages: Privacy Policy & Terms of Use
+-- Run after 001_initial.sql:
+--   psql -U postgres -d eduhub -f db/migrations/003_static_pages.sql
+-- ============================================================
+
+INSERT INTO static_pages (slug, title, content, is_active)
+VALUES (
+  'privacy-policy',
+  'Privacy Policy',
+  E'Last updated: August 2026\n\nEduHub PH ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information when you use eduhubph.tech.\n\nInformation We Collect:\nWe collect information you provide directly, such as your name and email address when you register for an account or contact us. We also automatically collect certain technical information when you visit the site, including your IP address, browser type, pages visited, and time spent on the site.\n\nCookies and Tracking Technologies:\nWe use cookies and similar technologies to operate the site, remember your preferences, and measure site usage. Third-party advertising partners, including Google AdSense, may also set cookies on your device to serve personalized ads based on your interests. You can control cookie preferences through our Cookie Settings panel.\n\nGoogle AdSense:\nWe use Google AdSense to display advertisements on this site. Google uses cookies to serve ads based on your prior visits to this and other websites. You may opt out of personalized advertising by visiting https://www.google.com/settings/ads. Google''s use of advertising cookies enables it and its partners to serve ads to users based on their visit to our site. For more information on how Google uses data, see https://policies.google.com/technologies/partner-sites.\n\nHow We Use Information:\nWe use the information we collect to operate and improve the site, send you account-related communications, respond to your messages, display relevant advertising, and comply with legal obligations. We do not sell your personal information to third parties.\n\nData Sharing:\nWe share data with Google for advertising purposes as described above. We may share information with service providers who assist in operating our platform, subject to confidentiality agreements. We may disclose information when required by law.\n\nData Retention:\nWe retain your account information for as long as your account is active. You may request deletion of your account by contacting us.\n\nYour Rights:\nYou have the right to access, correct, or delete your personal information. To exercise these rights, contact us via the Feedback page.\n\nChildren''s Privacy:\nEduHub PH is not directed at children under 13. We do not knowingly collect personal information from children under 13.\n\nChanges to This Policy:\nWe may update this Privacy Policy from time to time. We will notify users of significant changes by posting the updated policy on this page with a new effective date.\n\nContact:\nFor privacy-related questions, use the Contact/Feedback page on this site.',
+  true
+)
+ON CONFLICT (slug) DO UPDATE
+  SET title = EXCLUDED.title,
+      content = EXCLUDED.content,
+      is_active = EXCLUDED.is_active,
+      updated_at = NOW();
+
+INSERT INTO static_pages (slug, title, content, is_active)
+VALUES (
+  'terms-of-use',
+  'Terms of Use',
+  E'Last updated: August 2026\n\nWelcome to EduHub PH. By accessing or using eduhubph.tech, you agree to be bound by these Terms of Use. Please read them carefully.\n\n1. Acceptance of Terms\nBy using EduHub PH, you confirm that you are at least 13 years old and agree to these Terms of Use. If you do not agree, please do not use the site.\n\n2. Description of Service\nEduHub PH is a free educational platform that provides Filipino students with access to study reviewers, learning modules, scholarship information, and other educational resources. The platform is provided "as is" and is free to use.\n\n3. User Accounts\nYou may create an account to access additional features such as saving posts. You are responsible for maintaining the confidentiality of your login credentials and for all activities under your account. You must provide accurate information when registering.\n\n4. Acceptable Use\nYou agree not to use EduHub PH to post or transmit any content that is unlawful, harmful, abusive, harassing, defamatory, or otherwise objectionable. You may not attempt to gain unauthorized access to any part of the site or its systems. You may not use the site for any commercial purpose without written permission.\n\n5. Content\nEducational materials on EduHub PH are provided for informational and educational purposes only. While we strive for accuracy, we make no warranties about the completeness or reliability of any content. Always verify information with authoritative sources, especially for exam preparation.\n\n6. Intellectual Property\nAll content created by EduHub PH is protected by copyright. You may access content for personal, non-commercial use only. You may not reproduce, distribute, or create derivative works without express written permission.\n\n7. Advertising\nEduHub PH displays advertisements provided by Google AdSense. Advertising revenue helps keep the platform free. We are not responsible for the content of third-party advertisements.\n\n8. Privacy\nYour use of EduHub PH is also governed by our Privacy Policy, which is incorporated into these Terms by reference.\n\n9. Disclaimer of Warranties\nEduHub PH is provided on an "as is" and "as available" basis without warranties of any kind. We do not guarantee that the site will be uninterrupted, error-free, or free of viruses.\n\n10. Limitation of Liability\nTo the fullest extent permitted by law, EduHub PH and its operators shall not be liable for any indirect, incidental, or consequential damages arising from your use of the site.\n\n11. Changes to Terms\nWe reserve the right to modify these Terms at any time. Continued use of the site after changes constitutes acceptance of the updated Terms.\n\n12. Contact\nFor questions about these Terms, please use the Contact/Feedback page on this site.',
+  true
+)
+ON CONFLICT (slug) DO UPDATE
+  SET title = EXCLUDED.title,
+      content = EXCLUDED.content,
+      is_active = EXCLUDED.is_active,
+      updated_at = NOW();
